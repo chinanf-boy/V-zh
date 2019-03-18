@@ -17,26 +17,27 @@ wget vlang.io/v.c && gcc -o v v.c
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+
 - [介绍](#%E4%BB%8B%E7%BB%8D)
 - [你好，世界](#%E4%BD%A0%E5%A5%BD%E4%B8%96%E7%95%8C)
-- [评论](#%E8%AF%84%E8%AE%BA)
-- [功能](#%E5%8A%9F%E8%83%BD)
+- [注释](#%E6%B3%A8%E9%87%8A)
+- [函数](#%E5%87%BD%E6%95%B0)
 - [变量](#%E5%8F%98%E9%87%8F)
 - [基本类型](#%E5%9F%BA%E6%9C%AC%E7%B1%BB%E5%9E%8B)
 - [常量](#%E5%B8%B8%E9%87%8F)
-- [字符串](#%E5%AD%97%E7%AC%A6%E4%B8%B2)
+- [字符串(Strings)](#%E5%AD%97%E7%AC%A6%E4%B8%B2strings)
 - [数组](#%E6%95%B0%E7%BB%84)
-- [如果](#%E5%A6%82%E6%9E%9C)
-- [对于循环](#%E5%AF%B9%E4%BA%8E%E5%BE%AA%E7%8E%AF)
-- [开关](#%E5%BC%80%E5%85%B3)
-- [结构](#%E7%BB%93%E6%9E%84)
-- [方法](#%E6%96%B9%E6%B3%95)
+- [if](#if)
+- [for 循环](#for-%E5%BE%AA%E7%8E%AF)
+- [Switch](#switch)
+- [结构(Structs)](#%E7%BB%93%E6%9E%84structs)
+- [方法(Methods)](#%E6%96%B9%E6%B3%95methods)
 - [可变接收器](#%E5%8F%AF%E5%8F%98%E6%8E%A5%E6%94%B6%E5%99%A8)
-- [接口](#%E6%8E%A5%E5%8F%A3)
-- [选项类型](#%E9%80%89%E9%A1%B9%E7%B1%BB%E5%9E%8B)
+- [接口(Interfaces)](#%E6%8E%A5%E5%8F%A3interfaces)
+- [Option 类型](#option-%E7%B1%BB%E5%9E%8B)
 - [泛型](#%E6%B3%9B%E5%9E%8B)
 - [解码 JSON](#%E8%A7%A3%E7%A0%81-json)
-- [将 C / C ++翻译成 V.](#%E5%B0%86-c--c-%E7%BF%BB%E8%AF%91%E6%88%90-v)
+- [将 C/C++ 转译成 V.](#%E5%B0%86-cc-%E8%BD%AC%E8%AF%91%E6%88%90-v)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -46,37 +47,37 @@ V 是一种静态类型的编译编程语言，用于构建可维护的软件。
 
 它与 Go 非常相似，也受到 Oberon，Rust，Swift 的影响。
 
-V 是一种非常简单的语言。通过这个文档将花费你大约半个小时，到最后你将学习几乎整个语言。
+V 是一种非常简单的语言。这个文档，会花费你大约半个小时，到最后，你就学习了几乎整个语言。
 
-尽管很简单，但它为开发人员提供了很多动力。你可以用其他语言做任何事情，你可以用 V 做。
+尽管很简单，但它为开发人员提供了很多动力。你用其他语言做的任何事情，你都可以用 V 做。
 
 发现错误/拼写错误？请[提交拉取请求](https://github.com/vlang-io/V/blob/master/website/templates/docs.html)。
 
 ## 你好，世界
 
-```
+```go
 fn main() {
 	println('hello world')
 }
 ```
 
-声明函数`fn`。返回类型在函数名称后面。在这种情况下`main`不返回任何内容，因此省略了类型。
+声明函数用`fn`。返回类型，在函数名称后面。在这种情况下，`main`不返回任何内容，因此省略了类型。
 
-就像在 C 和所有相关语言中一样`main`是一个切入点。
+就像在 C 和所有相关语言中一样，`main`是一个切入点。
 
-`println`是为数不多的内置函数之一。它将值打印到标准输出。
+`println`是为数不多的内置函数之一。它将‘值’，打印到标准输出。
 
-## 评论
+## 注释
 
-```v
-// This is a single line comment
+```go
+// 单行 注释
 
-/* This is a multiline comment.
-   /* It can be nested */
+/* 多行 注释.
+   /* 可以嵌套 */
 */
 ```
 
-## 功能
+## 函数
 
 ```go
 fn add(x int, y int) int {
@@ -93,11 +94,11 @@ fn main() {
 }
 ```
 
-同样，类型出现在参数的名称之后。
+同样，类型，在参数名称之后出现。
 
 ## 变量
 
-```
+```go
 fn main() {
 	name := 'Bob'
 	age := 20
@@ -107,11 +108,11 @@ fn main() {
 }
 ```
 
-使用变量声明和初始化变量`:=`。这是在 V 中声明变量的唯一方法。这意味着变量始终具有初始值。变量的类型是从右侧的值推断出来的。
+变量声明和初始化变量，用`:=`。这是在 V 中声明变量的唯一方法。这意味着，变量始终具有初始值。
 
-要强制使用其他类型，请使用类型转换：表达式转换价值`T(v)`到类型`v`。`T`与大多数其他语言不同，V 只允许在函数中定义变量。
+变量的类型是从右侧的值推断出来的。要强制使用其他类型，请使用类型转换：`T(v)`表达式会转换，`v`值到类型`T`。
 
-不允许使用全局（模块级别）变量。V 中没有全球状态。要更改变量的值，请使用
+与大多数其他语言不同，V 只允许在函数中，定义变量。不允许使用全局（模块级别）变量。V 中没有全局状态。要更改变量的值，请使用：
 
 ```go
 fn main() {
@@ -122,10 +123,10 @@ fn main() {
 }
 ```
 
-。`=`在 V 中，默认情况下变量是不可变的。为了能够更改变量的值，您必须使用它来声明它`mut`。
+用`=`，改变变量的值。在 V 中，默认情况下变量是不可变的。为了能够更改变量的值，您必须使用`mut`来声明该变量。
 
-请注意两者之间的区别`:=`和`=`：\
-`:=`用于声明和初始化，`=`用于分配。
+请注意`:=`和`=`两者之间的区别：
+`:=`用于声明和初始化，`=`用于分配(值)。
 
 ```go
 fn main() {
@@ -133,11 +134,11 @@ fn main() {
 }
 ```
 
-这段代码不会编译，因为变量`age`没有宣布。所有变量都需要在 V 中声明。
+这段代码不会编译，因为变量`age`没有用`:=`声明。所有变量都需要在 V 中声明。
 
 ## 基本类型
 
-```v
+```go
 bool
 
 string
@@ -145,9 +146,9 @@ string
 i8  i16  i32  i64
 u8  u16  u32  u64
 
-byte // alias for u8
-int  // alias for i32
-rune // alias for i32, represents a Unicode code point
+byte //  u8 的别名
+int  //  i32 的别名
+rune //  i32 的别名, 表示一个 Unicode 代码点
 
 f32 f64
 ```
@@ -156,7 +157,7 @@ f32 f64
 
 ## 常量
 
-```v
+```go
 const PI = 3.14
 
 fn main() {
@@ -166,36 +167,36 @@ fn main() {
 }
 ```
 
-常量用 a 声明`const`关键词。它们可以在模块级别（功能之外）定义。
+常量用一个`const`关键词声明。它们可以在模块级别（函数之外）定义。
 
-常量名称必须大写。这有助于将它们与变量区分开来
+常量名称必须大写。这有助于，将它们与变量区分开来
 
 永远不能改变常量值。
 
-## 字符串
+## 字符串(Strings)
 
-```v
+```go
 fn main() {
 	name := 'Bob'
-	// Interpolated variable in string
+	// 在字符串中，插入变量，以显示其值
 	println('Hello, $name!')
 
 	println(name.len)
-        bobby := name + 'by' // + is used to concatenate strings
+        bobby := name + 'by' // + 用于连接字符串
         println(bobby) // ==> Bobby
 
         println(bobby.substr(1, 3)) // ==> ob
-        // println(bobby[1:3]) // This syntax will most likely replace the substr() method
+        // println(bobby[1:3]) // 更喜欢，这种语法写法，代替substr()方法
 }
 ```
 
-在 V 中，字符串是只读字节数组。字符串数据使用 UTF-8 编码。
+在 V 中，字符串是只读的字节数组。字符串数据使用 UTF-8 编码。
 
-字符串内容是不可变的。这意味着子字符串函数非常有效：不执行复制，不需要额外的分配。
+字符串内容是不可变的。这意味着，子字符串函数非常有效：不执行复制，不需要额外的分配。
 
 ## 数组
 
-```v
+```go
 fn main() {
 	nums := [1, 2, 3]
 	println(nums)
@@ -204,35 +205,36 @@ fn main() {
 	mut names := ['John']
 	names << 'Peter'
 	names << 'Sam'
-	// names << 10  <-- This will not compile. `names` is an array of strings.
+	// names << 10  <-- 这不会编译. `names` 是一个字符串数组
 	println(names.len) // ==> "3"
 	println(names.contains('Alex')) // ==> "false"
 
-	// We can also preallocate a certain amount of elements.
+	// 我们还可以预先分配一定数量的元素。
 	nr_ids := 50
-	mut ids := [0 ; nr_ids] // This creates an array with 50 zeroes
+	mut ids := [0 ; nr_ids] // 这将创建一个包含50个零的数组
 	for i := 0; i < nr_ids; i++ {
-		ids[i] = i // This is more efficient than
-		           // ids << i
+		ids[i] = i // 这比 ids << i ，效率更高
+		           //
 	}
 }
 ```
 
-数组类型由第一个元素决定：`[1, 2, 3]`是一组整数\
-（`[]int`）。\
-`['a', 'b']`是一个字符串数组（`[]string`）。
+数组类型由第一个元素决定：
+
+- `[1, 2, 3]`是一个整数数组（`[]int`。
+- `['a', 'b']`是一个字符串数组（`[]string`）。
 
 数组中的所有元素必须具有相同的类型。`[1, 'a']`不会编译。
 
-`<<`是一个将值附加到数组末尾的运算符。
+`<<`是一个将值附加到数组末尾的**运算符**。
 
-`.len`field 返回数组的长度。请注意，它是一个只读字段，用户无法修改。默认情况下，所有导出的字段都是只读的。
+`.len`字段，返回数组的长度。请注意，它是一个只读字段，用户无法修改。默认情况下，所有导出的字段，都是只读的。
 
-`.contains(val)`如果数组包含，则 method 返回 true`val`。
+`.contains(val)`方法为，若数组包含该 `val`，则 method 返回 true。
 
-## 如果
+## if
 
-```v
+```go
 fn main() {
 	a := 10
 	b := 20
@@ -248,13 +250,13 @@ fn main() {
 
 `if`语句非常简单，与大多数其他语言类似。
 
-与其他类 C 语言不同，条件周围没有括号，并且始终需要大括号。
+与其他类 C 语言不同，条件语句周围没有括号`(if ..)`，并且始终需要大括号。
 
-## 对于循环
+## for 循环
 
 V 只有一个循环结构：`for`。
 
-```v
+```go
 fn main() {
 	numbers := [1, 2, 3, 4, 5]
 	for num in numbers {
@@ -262,14 +264,14 @@ fn main() {
 	}
 	names := ['Sam', 'Peter']
 	for i, name in names {
-		println('$i) $name')  // Output: 0) Sam
-	}                                        1) Peter
+		println('$i) $name')  // 输出: 0) Sam
+	}                         //      1) Peter
 }
 ```
 
-该`for .. in`loop 用于遍历数组的元素。如果需要索引，则使用另一种形式`for index, value in`可以使用。
+该`for .. in`循环，用于遍历数组的元素。如果需要索引，则可用另一种形式`for index, value in`。
 
-```v
+```go
 fn main() {
 	mut sum := 0
 	mut i := 0
@@ -281,13 +283,13 @@ fn main() {
 }
 ```
 
-这种形式的循环类似于`while`用其他语言循环。
+这种形式的循环类似于，其他语言的`while`循环。
 
-一旦布尔条件求值为 false，循环将停止迭代。
+一旦 bool 条件求值为 false，循环将停止迭代。
 
-同样，条件周围没有括号，并且总是需要括号。
+同样，条件语句周围没有括号，并且总是需要括号。
 
-```v
+```go
 fn main() {
 	mut sum := 0
 	for {
@@ -297,9 +299,9 @@ fn main() {
 }
 ```
 
-条件可以省略，这会导致无限循环。
+条件语句可以省略，这会导致无限循环。
 
-```v
+```go
 fn main() {
 	for i := 0; i < 10; i++ {
 		println(i)
@@ -307,11 +309,11 @@ fn main() {
 }
 ```
 
-最后，还有传统的 C 风格`for`环。它比安全更安全\`而\`形式因为后者很容易忘记更新计数器并陷入无限循环。
+最后，还有传统 C 风格的`for`循环。它比`while`形式更安全，因为后者很容易忘记，更新计数器并陷入无限循环。
 
-## 开关
+## Switch
 
-```v
+```go
 import os
 
 fn main() {
@@ -327,13 +329,13 @@ fn main() {
 }
 ```
 
-switch 语句是编写序列的较短方式`if - else`声明。它运行第一种情况，其值等于条件表达式。
+switch 语句是编写一连串`if - else`声明语句的较短方式。它运行第一种情况，其值等于条件表达式。
 
-与 C 不同，`break`每个块末尾都不需要声明。
+与 C 不同，每个块末尾都不需要`break`声明。
 
-## 结构
+## 结构(Structs)
 
-```v
+```go
 struct Point {
 	x int
 	y int
@@ -341,22 +343,21 @@ struct Point {
 
 fn main() {
 	p := Point{10, 20}
-	println(p.x) // Struct fields are accessed using a dot
-	p2 := Point{ // Fields can also be set using this syntax
+	println(p.x) // 使用 .(点) 就可以访问结构字段
+	p2 := Point{ // 也可以用这种语法写法，设置字段
 		x: 20
 		y: 30
 	}
-	// & prefix returns a pointer to the struct value.
-	// It's allocated on the heap and automatically cleaned up
-	// by V at the end of the function, since it doesn't escape.
+	// 具有 & 前缀 ，会返回该结构值的指针
+	// 在 堆 中分配内存 和 在它(们)没跑路前，被 V 在函数结尾，自动清除。
 	pointer := &Point{10,10}
-	println(pointer.x, pointer.y) // Pointers have the same syntax for accessing fields
+	println(pointer.x, pointer.y) // 指针，具有访问字段的同语法写法
 }
 ```
 
-## 方法
+## 方法(Methods)
 
-```v
+```go
 import math
 
 struct Point {
@@ -375,21 +376,21 @@ fn main () {
 }
 ```
 
-V 没有课程。但您可以在类型上定义方法。
+V 没有类。但您可以在类型上，定义方法。
 
-方法是具有特殊接收器参数的函数。
+方法是具有一个特定接收参数的函数。
 
-接收器出现在它自己的参数列表中`fn`关键字和方法名称。
+接收参数出现在它自己的参数列表中，位于`fn`关键字和方法名称之间。
 
-在这个例子中，`distance_to`方法有一个类型的接收器`Point`命名`a`。
+在这个例子中，`distance_to`方法有一个类型`Point`的接收参数，其命名`a`。
 
 ## 可变接收器
 
-去做
+TODO
 
-## 接口
+## 接口(Interfaces)
 
-```v
+```go
 struct Dog {}
 struct Cat {}
 
@@ -410,13 +411,13 @@ fn main() {
 }
 ```
 
-类型通过实现其方法来实现接口。没有明确的意图声明，没有“implements”关键字。
+类型通过实现其方法，来实现接口。没有明确的意图声明，没有“implements”关键字。
 
 V 接口非常有效。没有动态调度。
 
-## 选项类型
+## Option 类型
 
-```v
+```go
 struct User {
 	id int
 }
@@ -428,7 +429,7 @@ struct Repo {
 fn (r Repo) find_user_by_id(id int) User? {
 	for user in r.users {
 		if user.id == id {
-			// V automatically wraps this into an option type
+			// V 自动把它包进一个 option 类型
 			return user
 		}
 	}
@@ -436,42 +437,44 @@ fn (r Repo) find_user_by_id(id int) User? {
 }
 
 fn main() {
-	repo := // ... initialize the repository here and load users data
-	// either get the user or handle an error and leave the current scope
+	repo := // ... 在这里，初始化一个存储库 here
+	// 和加载到用户数据，获取用户或者处理一个错误，再离开当前作用域
 	user := repo.find_user_by_id(10) or {
 		eprintln(err)
 		return
 	}
 	println(user.id) // 10
-	user = repo.find_user_by_id(11)? // ? propagates an error
+	user = repo.find_user_by_id(11)? // ? 传播一个错误
 	println(user.id) // 11
 }
 ```
 
-另请注意，将函数“升级”为可选函数所需的工作量很小：您必须添加一个`?`返回类型并在出现错误时返回错误。
+另请注意，将函数“升级”为可选(option)函数所需的工作量很小，就是：您必须添加一个`?`返回类型，并在出现错误时，返回错误。
 
 ## 泛型
 
-```v
+```go
 import database
 
 struct Repo <T> {
 	db DB
 }
 
-// Generic code is notoriously verbose. To reduce clutter, V doesn't require you
-// to add `<T>` every time, since it already knows that Repo is a generic type.
-// Here the function return type is an unspecified instance of Repo.
+// 众所周知，泛型代码很冗长。 为了减少混乱, V 不要求你每次都
+// 添加 `<T>`, 因为它已经知道这个Repo 是个泛型类型
+// 这里的函数，会返回一个不明确的 Repo实例
 fn new_repo<T>(db DB) Repo {
 	return Repo<T>{db: db}
 }
 
-// This is a generic method. V will generate it for every Repo instance it's used with.
-// Again <T> is implied by just writing Repo for the receiver type, so V makes the method take <T> too:
+// 这里是一个泛型方法. V 会为每个Repo实例所用到的，生成代码。
+// 再次说明， <T> 是隐性的，因Repo作为了该函数的接收参数, 所以
+//  V 也让该方法知道 <T>:
 // fn (r Repo<T>) find_by_id<T>(id int) T?
 fn (r Repo) find_by_id(id int) T? {
-	table_name := T.name // in this example getting the name of the type gives us the table name
-	//lookup a value of type T from the database, or return an error
+	table_name := T.name // 在这里示例中，我们获取 T 的name，
+	// 赋给 table_name ，从数据库(db)找寻一个类型 T 的值, 或
+	// 返回一个错误
 	return r.db.query_one<T>('select * from $table_name where id = ?', id)
 }
 
@@ -482,9 +485,9 @@ fn main() {
 	db := new_db()
 	users_repo := new_repo<User>(db)
 	posts_repo := new_repo<Post>(db)
-	// find_by_id is inferred from users_repo:
+	// find_by_id的泛型 从 users_repo 推断而来:
 	user := users_repo.find_by_id(1)?
-	// find_by_id is inferred from posts_repo:
+	// find_by_id的泛型 从 posts_repo 推断而来:
 	post := posts_repo.find_by_id(1)?
 	println(user.name)
 	println(post.text)
@@ -493,7 +496,7 @@ fn main() {
 
 ## 解码 JSON
 
-```v
+```go
 struct User {
 	name string
 	age  int
@@ -510,15 +513,15 @@ fn main() {
 }
 ```
 
-JSON 现在非常流行，这就是内置 JSON 支持的原因。
+JSON 现在非常流行，这就是 JSON 内置支持的原因。
 
-的第一个论点`json.decode`function 是要解码的类型。第二个参数是 json 字符串。
+`json.decode`函数的第一个参数，是要解码的类型(结构)。第二个参数是 json 字符串。
 
-V 生成用于 json 编码和解码的代码。没有使用反射。这导致更好的性能。
+V 生成用于 json 编码和解码的代码。没有使用反射(reflection)。这导致更好的性能。
 
-## 将 C / C ++翻译成 V.
+## 将 C/C++ 转译成 V.
 
-V 可以将您的 C / C ++代码转换为人类可读的 V 代码。让我们创建一个简单的程序`test.cpp`第一：
+V 可以将您的 C/C++ 代码，转换为人类可读的 V 代码。让我们先创建一个简单的程序`test.cpp`：
 
 ```c
 #include <vector>
@@ -534,9 +537,9 @@ int main() {
 }
 ```
 
-跑`v translate test.cpp`和 V 将生成`test.v`：
+运行`v translate test.cpp`，那么 V 将生成`test.v`：
 
-```v
+```go
 fn main {
         mut s := []string
 	s << 'V is '

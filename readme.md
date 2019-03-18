@@ -15,7 +15,7 @@
 
 ---
 
-## 校对 🀄️
+## 校对 ✅
 
 <!-- doc-templite START generated -->
 <!-- repo = 'vlang-io/V' -->
@@ -33,7 +33,7 @@
 
 - [x] readme
 - [x] [概略：一睹为快](mds/index.zh.md)
-- [ ] [文档](mds/docs.zh.md)
+- [x] [文档](mds/docs.zh.md)
 - [x] [对比](mds/compare.zh.md)
 - [x] [速度基准](mds/compilation_speed.zh.md)
 

@@ -458,7 +458,7 @@ Also note that the amount of work required to "upgrade" a function to an optiona
 
 ## Generics
 
-```v
+```go
 import database
 
 struct Repo <T> {
