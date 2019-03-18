@@ -12,9 +12,10 @@
 wget vlang.io/v.c && gcc -o v v.c
 ```
 
+## 语法目录
+
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 
 - [介绍](#%E4%BB%8B%E7%BB%8D)
 - [你好，世界](#%E4%BD%A0%E5%A5%BD%E4%B8%96%E7%95%8C)
