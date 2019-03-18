@@ -1,0 +1,5 @@
+./source/website/templates/_layout.html
+./source/website/templates/compare.html
+./source/website/templates/compilation_speed.html
+./source/website/templates/docs.html
+./source/website/templates/index.html
