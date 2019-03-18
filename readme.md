@@ -1,6 +1,6 @@
-# vlang-io/V [![explain]][source] [![translate-svg]][translate-list]
+# vlang-io/V [![translate-svg]][translate-list]
 
-<!-- [![size-img]][size] -->
+<!--[![explain]][source]-->
 
 [explain]: http://llever.com/explain.svg
 [source]: https://github.com/chinanf-boy/Source-Explain
@@ -9,7 +9,7 @@
 [size-img]: https://packagephobia.now.sh/badge?p=Name
 [size]: https://packagephobia.now.sh/result?p=Name
 
-「 V 编程语言 」
+「 V 编程语言 （未发布，但从数据看，值得了解一下） 」
 
 [中文](./readme.md) | [english](https://github.com/vlang-io/V)
 
@@ -31,11 +31,11 @@
 
 <!-- doc-templite END generated -->
 
-- [ ] [\_layout.md](mds/_layout.md)
-- [ ] [compare.md](mds/compare.md)
-- [ ] [compilation_speed.md](mds/compilation_speed.md)
-- [ ] [docs.md](mds/docs.md)
-- [ ] [index.md](mds/index.md)
+~~[\_layout.md](mds/_layout.md)~~
+- [ ] [compare.md](mds/compare.zh.md)
+- [ ] [compilation_speed.md](mds/compilation_speed.zh.md)
+- [ ] [docs.md](mds/docs.zh.md)
+- [ ] [index.md](mds/index.zh.md)
 
 ### 贡献
 

@@ -1,59 +1,59 @@
 <!-- @t header h2 { border-top: 1px solid #dfdfdf; padding-top: 10px; } pre { font-size:80%; } comment { font-family: 'Roboto Mono'; color: #777; } -->
 
-[Examples](https://github.com/vlang-io/V/tree/master/examples) [Documentation](/docs) [Playground](/play) [Blog](/blog) [FAQ](/#faq) [Software built in V](/#software)
+[例子](https://github.com/vlang-io/V/tree/master/examples) [文档](/docs) [操场](/play) [博客](/blog) [常问问题](/#faq) [软件内置V](/#software)
 
-# V programming language
+# V编程语言
 
-Fast, safe, compiled language created for developing [Volt](https://volt.ws), soon available for everyone.
+为开发创建快速，安全，编译的语言[伏特](https://volt.ws)，很快就可供所有人使用。
 
-Open source release in mid 2019.
+2019年中期开源发布。
 
-Install V from source in 0.5 seconds
+在0.5秒内从源安装V.
 
 ```
 wget vlang.io/v.c && gcc -o v v.c
 ```
 
-## Comparison of V and other languages
+## V和其他语言的比较
 
-### Go
+### 走
 
-V is very similar to Go, and these are the things it improves upon:
+V与Go非常相似，这些是它改进的东西：
 
-- No global state
-- Only one declaration style (`a := 0`)
-- No null
-- No undefined values
-- No `err != nil` checks (replaced by option types)
-- Immutability by default
-- Much stricter vfmt
-- No runtime
-- Much smaller binaries
-- Zero cost C interop
-- No GC
-- Fearless concurrency (no data race guarantee at compilation)
-- Generics
-- Cheaper interfaces without dynamic dispatch
+-   没有全球状态
+-   只有一种宣言风格（`a := 0`）
+-   没有
+-   没有未定义的值
+-   没有`err != nil`检查（由选项类型替换）
+-   默认不变性
+-   更加严格的vfmt
+-   没有运行时
+-   更小的二进制文件
+-   零成本C互操作
+-   没有GC
+-   无所畏的并发（编译时没有数据竞争保证）
+-   泛型
+-   没有动态调度的更便宜的接口
 
-### Rust
+### 锈
 
-Rust has a very different philosophy.
+Rust有着截然不同的哲学。
 
-It is a complex language with a growing set of features and a steep learning curve. No doubt, once you learn and understand the language, it becomes a very powerful tool for developing safe, fast, and stable software. But the complexity is still there.
+它是一种复杂的语言，具有越来越多的功能和陡峭的学习曲线。毫无疑问，一旦您学习并理解了该语言，它就成为开发安全，快速，稳定软件的强大工具。但复杂性仍然存在。
 
-V's goal is to allow building maintainable and predictable software. That's why the language is so simple and maybe even boring for some. The good thing is, you can jump into any part of the project and understand what's going on, feel like it was you who wrote it, because the language is simple and there's only one way of doing things.
+V的目标是允许构建可维护且可预测的软件。这就是为什么语言如此简单，甚至可能对某些人来说无聊。好处是，你可以跳进项目的任何部分并了解正在发生的事情，感觉就像是你写的那样，因为语言很简单而且只有一种做事方式。
 
-Rust's compilation speed is slow, on par with C++. V compiles 1.5 million lines of code per cpu per second.
+Rust的编译速度很慢，与C ++相当。V每秒每个CPU编译150万行代码。
 
-### V vs Rust vs Go: example
+### V vs Rust vs Go：例子
 
-Since V's domain is close to both Go and Rust, I decided to use a simple example to compare the three.
+由于V的域接近Go和Rust，我决定使用一个简单的例子来比较这三者。
 
-I came across a developer [playing](https://github.com/hyperium/hyper/issues/777) with Rust and Go. They wrote a simple concurrent program that fetches top Hacker News stories concurrently.
+我遇到了一位开发人员[播放](https://github.com/hyperium/hyper/issues/777)与Rust和Go。他们编写了一个简单的并发程序，同时获取了顶级的黑客新闻故事。
 
-After getting help from both communities, this is their final code:
+在得到两个社区的帮助后，这是他们的最终代码：
 
-**Rust**
+**锈**
 
 ```rust
 extern crate hyper;
@@ -132,13 +132,11 @@ fn main() {
         handle.join().unwrap();
     }
 }
-
 ```
 
-**Go**
+**走**
 
 ```go
-
 package main
 
 import (
@@ -212,13 +210,11 @@ func main() {
 
 	wg.Wait()
 }
-
 ```
 
 **V**
 
 ```v
-
 import http
 import json
 import runtime
@@ -247,9 +243,8 @@ fn main() {
         }
         runtime.wait() // Waits for all coroutines to finish
 }
-
 ```
 
-More languages coming soon...
+即将推出更多语言...
 
 <!-- @t footer -->

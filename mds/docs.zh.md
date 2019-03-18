@@ -1,35 +1,35 @@
 <!-- @t header h2 { border-top: 1px solid #dfdfdf; padding-top: 10px; } comment { font-family: 'Roboto Mono'; color: #777; } code { font-family: 'Roboto Mono'; background-color: #fafafa; padding: 1px 3px 1px 3px; } -->
 
-[Examples](https://github.com/vlang-io/V/tree/master/examples) [Documentation](/docs) [Playground](/play) [Blog](/blog) [FAQ](/#faq) [Software built in V](/#software)
+[例子](https://github.com/vlang-io/V/tree/master/examples) [文档](/docs) [操场](/play) [博客](/blog) [常问问题](/#faq) [软件内置V](/#software)
 
-# V programming language
+# V编程语言
 
-Fast, safe, compiled language created for developing [Volt](https://volt.ws), soon available for everyone.
+为开发创建快速，安全，编译的语言[伏特](https://volt.ws)，很快就可供所有人使用。
 
-Open source release in mid 2019.
+2019年中期开源发布。
 
-Install V from source in 0.5 seconds
+在0.5秒内从源安装V.
 
 ```
 wget vlang.io/v.c && gcc -o v v.c
 ```
 
-[Introduction](#introduction) [Hello World](#hello) [Comments](#comments) [Functions](#fns) [Variables](#vars) [Basic types](#btypes) [Constants](#consts) [Strings](#strings) [Arrays](#arrays) [If statement](#if) [For loop](#for) [Switch](#switch) [Structs](#structs) [Methods](#methods) [Mutable receivers](#recvs) [Interfaces](#interfaces) [Option types](#option) [Generics](#generics) [Decoding JSON](#json)  
-[Translating C/C++ to V](#cpp)
+[介绍](#introduction) [你好，世界](#hello) [评论](#comments) [功能](#fns) [变量](#vars) [基本类型](#btypes) [常量](#consts) [字符串](#strings) [数组](#arrays) [如果声明](#if) [对于循环](#for) [开关](#switch) [结构](#structs) [方法](#methods) [可变接收器](#recvs) [接口](#interfaces) [选项类型](#option) [泛型](#generics) [解码JSON](#json)\
+[将C / C ++翻译成V.](#cpp)
 
-## Introduction
+## 介绍
 
-V is a statically typed compiled programming language designed for building maintainable software.
+V是一种静态类型的编译编程语言，用于构建可维护的软件。
 
-It's very similar to Go and is also influenced by Oberon, Rust, Swift.
+它与Go非常相似，也受到Oberon，Rust，Swift的影响。
 
-V is a very simple language. Going through this documentation will take you about half an hour, and by the end of it you will learn pretty much the entire language.
+V是一种非常简单的语言。通过这个文档将花费你大约半个小时，到最后你将学习几乎整个语言。
 
-Despite being simple, it gives a lot of power to the developer. Anything you can do in other languages, you can do in V.
+尽管很简单，但它为开发人员提供了很多动力。你可以用其他语言做任何事情，你可以用V做。
 
-Found an error/typo? Please [submit a pull request](https://github.com/vlang-io/V/blob/master/website/templates/docs.html).
+发现错误/拼写错误？请[提交拉取请求](https://github.com/vlang-io/V/blob/master/website/templates/docs.html)。
 
-## Hello World
+## 你好，世界
 
 ```
 fn main() {
@@ -37,13 +37,13 @@ fn main() {
 }
 ```
 
-Functions are declared with `fn`. Return type goes after the function name. In this case `main` doesn't return anything, so the type is omitted.
+声明函数`fn`。返回类型在函数名称后面。在这种情况下`main`不返回任何内容，因此省略了类型。
 
-Just like in C and all related languages, `main` is an entry point.
+就像在C和所有相关语言中一样`main`是一个切入点。
 
-`println` is one of the few builtin functions. It prints the value to standard output.
+`println`是为数不多的内置函数之一。它将值打印到标准输出。
 
-## Comments
+## 评论
 
 ```v
 // This is a single line comment
@@ -53,7 +53,7 @@ Just like in C and all related languages, `main` is an entry point.
 */
 ```
 
-## Functions
+## 功能
 
 ```go
 fn add(x int, y int) int {
@@ -68,15 +68,13 @@ fn main() {
 	println(add(77, 33))
 	println(sub(100, 50))
 }
-
 ```
 
-Again, the type comes after the argument's name.
+同样，类型出现在参数的名称之后。
 
-## Variables
+## 变量
 
 ```
-
 fn main() {
 	name := 'Bob'
 	age := 20
@@ -84,14 +82,13 @@ fn main() {
 	println(name)
 	println(age)
 }
-
 ```
 
-Variables are declared and initialized with `:=`. This is the only way to declare variables in V. This means that variables always have an initial value.
+使用变量声明和初始化变量`:=`。这是在V中声明变量的唯一方法。这意味着变量始终具有初始值。变量的类型是从右侧的值推断出来的。
 
-The variable's type is inferred from the value on the right hand side. To force a different type, use type conversion: the expression `T(v)` converts the value `v` to the type `T`.
+要强制使用其他类型，请使用类型转换：表达式转换价值`T(v)`到类型`v`。`T`与大多数其他语言不同，V只允许在函数中定义变量。
 
-Unlike most other languages, V only allows defining variables in functions. Global (module level) variables are not allowed. There's no global state in V.
+不允许使用全局（模块级别）变量。V中没有全球状态。要更改变量的值，请使用
 
 ```go
 fn main() {
@@ -100,13 +97,12 @@ fn main() {
 	age = 21
 	println(age)
 }
-
 ```
 
-To change the value of the variable use `=`. In V variables are immutable by default. To be able to change the value of the variable, you have to declare it with `mut`.
+。`=`在V中，默认情况下变量是不可变的。为了能够更改变量的值，您必须使用它来声明它`mut`。
 
-Please note the difference between `:=` and `=`:  
-`:=` is used for declaring and initializing, `=` is used for assigning.
+请注意两者之间的区别`:=`和`=`：\
+`:=`用于声明和初始化，`=`用于分配。
 
 ```go
 fn main() {
@@ -114,9 +110,9 @@ fn main() {
 }
 ```
 
-This code will not compile, because variable `age` is not declared. All variables need to be declared in V.
+这段代码不会编译，因为变量`age`没有宣布。所有变量都需要在V中声明。
 
-## Basic types
+## 基本类型
 
 ```v
 bool
@@ -131,15 +127,13 @@ int  // alias for i32
 rune // alias for i32, represents a Unicode code point
 
 f32 f64
-
 ```
 
-Please note, than unlike C and Go, `int` is always a 32 bit integer.
+请注意，与C和Go不同，`int`始终是32位整数。
 
-## Constants
+## 常量
 
 ```v
-
 const PI = 3.14
 
 fn main() {
@@ -147,16 +141,15 @@ fn main() {
 	const WORLD = '世界'
 	println(WORLD)
 }
-
 ```
 
-Constants are declared with a `const` keyword. They can be defined at the module level (outside of functions).
+常量用a声明`const`关键词。它们可以在模块级别（功能之外）定义。
 
-Constant names must be capitalized. This helps distinguish them from variables.
+常量名称必须大写。这有助于将它们与变量区分开来
 
-Constant values can never be changed.
+永远不能改变常量值。
 
-## Strings
+## 字符串
 
 ```v
 fn main() {
@@ -171,17 +164,15 @@ fn main() {
         println(bobby.substr(1, 3)) // ==> ob
         // println(bobby[1:3]) // This syntax will most likely replace the substr() method
 }
-
 ```
 
-In V, a string is a read-only array of bytes. String data is encoded using UTF-8.
+在V中，字符串是只读字节数组。字符串数据使用UTF-8编码。
 
-String contents are immutable. This means that the substring function is very efficient: no copying is performed, no extra allocations required.
+字符串内容是不可变的。这意味着子字符串函数非常有效：不执行复制，不需要额外的分配。
 
-## Arrays
+## 数组
 
 ```v
-
 fn main() {
 	nums := [1, 2, 3]
 	println(nums)
@@ -202,25 +193,23 @@ fn main() {
 		           // ids << i
 	}
 }
-
 ```
 
-Array type is determined by the first element: `[1, 2, 3]` is an array of ints  
-(`[]int`).  
-`['a', 'b']` is an array of strings (`[]string`).
+数组类型由第一个元素决定：`[1, 2, 3]`是一组整数\
+（`[]int`）。\
+`['a', 'b']`是一个字符串数组（`[]string`）。
 
-All elements in an array must have the same type. `[1, 'a']` will not compile.
+数组中的所有元素必须具有相同的类型。`[1, 'a']`不会编译。
 
-`<<` is an operator that appends a value to the end of the array.
+`<<`是一个将值附加到数组末尾的运算符。
 
-`.len` field returns the length of the array. Note, that it's a read-only field, and it can't be modified by the user. All exported fields are read-only by default in V.
+`.len`field返回数组的长度。请注意，它是一个只读字段，用户无法修改。默认情况下，所有导出的字段都是只读的。
 
-`.contains(val)` method returns true if the array contains `val`.
+`.contains(val)`如果数组包含，则method返回true`val`。
 
-## If
+## 如果
 
 ```v
-
 fn main() {
 	a := 10
 	b := 20
@@ -232,19 +221,17 @@ fn main() {
 		println('$a == $b')
 	}
 }
-
 ```
 
-`if` statements are pretty straightforward and similar to most other languages.
+`if`语句非常简单，与大多数其他语言类似。
 
-Unlike other C-like languages, there are no parentheses surrounding the condition, and the braces are always required.
+与其他类C语言不同，条件周围没有括号，并且始终需要大括号。
 
-## For loop
+## 对于循环
 
-V has only one looping construct: `for`.
+V只有一个循环结构：`for`。
 
 ```v
-
 fn main() {
 	numbers := [1, 2, 3, 4, 5]
 	for num in numbers {
@@ -255,13 +242,11 @@ fn main() {
 		println('$i) $name')  // Output: 0) Sam
 	}                                        1) Peter
 }
-
 ```
 
-The `for .. in` loop is used for going through elements of an array. If an index is required, an alternative form `for index, value in` can be used.
+该`for .. in`loop用于遍历数组的元素。如果需要索引，则使用另一种形式`for index, value in`可以使用。
 
 ```v
-
 fn main() {
 	mut sum := 0
 	mut i := 0
@@ -271,17 +256,15 @@ fn main() {
 	}
 	println(sum)
 }
-
 ```
 
-This form of the loop is similar to `while` loops in other languages.
+这种形式的循环类似于`while`用其他语言循环。
 
-The loop will stop iterating once the boolean condition evaluates to false.
+一旦布尔条件求值为false，循环将停止迭代。
 
-Again, there are no parentheses surrounding the condition, and the braces are always required.
+同样，条件周围没有括号，并且总是需要括号。
 
 ```v
-
 fn main() {
 	mut sum := 0
 	for {
@@ -289,27 +272,23 @@ fn main() {
 	}
 	println('This will never be printed')
 }
-
 ```
 
-The condition can be omitted, this results in an infinite loop.
+条件可以省略，这会导致无限循环。
 
 ```v
-
 fn main() {
 	for i := 0; i < 10; i++ {
 		println(i)
 	}
 }
-
 ```
 
-Finally, there's the traditional C style `for` loop. It's safer than the \`while\` form because with the latter it's easy to forget to update the counter and get stuck in an infinite loop.
+最后，还有传统的C风格`for`环。它比安全更安全\`而\`形式因为后者很容易忘记更新计数器并陷入无限循环。
 
-## Switch
+## 开关
 
 ```v
-
 import os
 
 fn main() {
@@ -323,17 +302,15 @@ fn main() {
 		println(os.OS_NAME)
 	}
 }
-
 ```
 
-A switch statement is a shorter way to write a sequence of `if - else` statements. It runs the first case whose value is equal to the condition expression.
+switch语句是编写序列的较短方式`if - else`声明。它运行第一种情况，其值等于条件表达式。
 
-Unlike C, `break` statement is not needed at the end of every block.
+与C不同，`break`每个块末尾都不需要声明。
 
-## Structs
+## 结构
 
 ```v
-
 struct Point {
 	x int
 	y int
@@ -352,13 +329,11 @@ fn main() {
 	pointer := &Point{10,10}
 	println(pointer.x, pointer.y) // Pointers have the same syntax for accessing fields
 }
-
 ```
 
-## Methods
+## 方法
 
 ```v
-
 import math
 
 struct Point {
@@ -375,25 +350,23 @@ fn main () {
 	p2 := Point{20,20}
 	println(p.distance_to(p2))
 }
-
 ```
 
-V doesn't have classes. But you can define methods on types.
+V没有课程。但您可以在类型上定义方法。
 
-A method is a function with a special receiver argument.
+方法是具有特殊接收器参数的函数。
 
-The receiver appears in its own argument list between the `fn` keyword and the method name.
+接收器出现在它自己的参数列表中`fn`关键字和方法名称。
 
-In this example, the `distance_to` method has a receiver of type `Point` named `a`.
+在这个例子中，`distance_to`方法有一个类型的接收器`Point`命名`a`。
 
-## Mutable receivers
+## 可变接收器
 
-TODO
+去做
 
-## Interfaces
+## 接口
 
 ```v
-
 struct Dog {}
 struct Cat {}
 
@@ -412,14 +385,13 @@ fn main() {
 	perform(dog) // ==> "woof"
 	perform(cat) // ==> "meow"
 }
-
 ```
 
-A type implements an interface by implementing its methods. There is no explicit declaration of intent, no "implements" keyword.
+类型通过实现其方法来实现接口。没有明确的意图声明，没有“implements”关键字。
 
-V interfaces are very efficient. There's no dynamic dispatch.
+V接口非常有效。没有动态调度。
 
-## Option types
+## 选项类型
 
 ```v
 struct User {
@@ -451,12 +423,11 @@ fn main() {
 	user = repo.find_user_by_id(11)? // ? propagates an error
 	println(user.id) // 11
 }
-
 ```
 
-Also note that the amount of work required to "upgrade" a function to an optional function is minimal: you have to add a `?` to the return type and return an error when something goes wrong.
+另请注意，将函数“升级”为可选函数所需的工作量很小：您必须添加一个`?`返回类型并在出现错误时返回错误。
 
-## Generics
+## 泛型
 
 ```v
 import database
@@ -495,10 +466,9 @@ fn main() {
 	println(user.name)
 	println(post.text)
 }
-
 ```
 
-## Decoding JSON
+## 解码JSON
 
 ```v
 struct User {
@@ -515,18 +485,17 @@ fn main() {
 	println(user.name)
 	println(user.age)
 }
-
 ```
 
-JSON is very popular nowadays, that's why JSON support is built in.
+JSON现在非常流行，这就是内置JSON支持的原因。
 
-The first argument of the `json.decode` function is the type to decode to. The second argument is the json string.
+的第一个论点`json.decode`function是要解码的类型。第二个参数是json字符串。
 
-V generates code for json encoding and decoding. No reflection is used. This results in much better performance.
+V生成用于json编码和解码的代码。没有使用反射。这导致更好的性能。
 
-## Translating C/C++ to V
+## 将C / C ++翻译成V.
 
-V can translate your C/C++ code to human readable V code. Let's create a simple program `test.cpp` first:
+V可以将您的C / C ++代码转换为人类可读的V代码。让我们创建一个简单的程序`test.cpp`第一：
 
 ```c
 #include <vector>
@@ -540,10 +509,9 @@ int main() {
         std::cout << s.size() << std::endl;
         return 0;
 }
-
 ```
 
-Run `v translate test.cpp` and V will generate `test.v`:
+跑`v translate test.cpp`和V将生成`test.v`：
 
 ```v
 fn main {
@@ -552,7 +520,6 @@ fn main {
 	s << 'awesome'
 	println(s.len)
 }
-
 ```
 
 <!-- @t footer -->
