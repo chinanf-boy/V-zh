@@ -22,7 +22,7 @@ wget vlang.io/v.c && gcc -o v v.c
 
 ```go
 fn main() {
-	types := \[ 'game', 'web', 'tools', 'GUI' \]
+	types := [ 'game', 'web', 'tools', 'GUI' ]
 	for typ in types {
 		println('Hello, $typ developers!')
 	}
@@ -31,14 +31,14 @@ fn main() {
 
 <details>
 
-<summary>2. Concurrent news fetcher</summary>
+<summary>2. 并发 新闻 获取</summary>
 
 ```go
 struct Story {
     title string
 }
 
-// Fetches top HN stories in 8 coroutines
+// 获取 HN 最新的新闻，8个并发
 fn main() {
     resp := http.get('https://hacker-news.firebaseio.com/v0/topstories.json')?
     ids := json.decode([]int, resp.body)?
@@ -46,7 +46,7 @@ fn main() {
     for _ in 0..8 {
         go fn() {
             for  {
-                lock { // Without this lock the program will not compile
+                lock { // 若没有 lock，那么这个程序将无法编译
                     if cursor >= ids.len {
                         break
                     }
@@ -59,32 +59,32 @@ fn main() {
             }
         }()
     }
-    runtime.wait() // Waits for all coroutines to finish
+    runtime.wait() // 等待所有的并发进程结束
 }
 ```
 
 <details>
 
-<summary>3.Simple GUI app</summary>
+<summary>3.简单的 GUI app</summary>
 
 ```go
-import ui  // Native cross platform ui toolkit (uses Cocoa, win32, GTK+)
+import ui  // 原生跨平台 ui 套件 (使用 Cocoa, win32, GTK+)
 
-// There are no globals, so we have to use a context struct
+// 因为没有全局变量, 所以我们不得不使用一个结构上下文
 struct Context {
-    input ui.TextBox // this uses native conrols (NSTextView on macOS, edit HWND on Windows)
-    names []string   // let's log the names to demonstrate how arrays work
+    input ui.TextBox // 该使用原生控制 (NSTextView 在 macOS, 在 Windows 编辑 HWND)
+    names []string   // 让我们记录 names，示范下该 arrays 是如何工作的
 }
 
 fn main() {
-    wnd := ui.new_window(ui.WindowCfg{  // V has no default arguments and overloading.
-        width:  600                     // All stdlib functions with many args use Cfg wrappers.
+    wnd := ui.new_window(ui.WindowCfg{  // V 没有 默认参数 和 重载方法
+        width:  600                     // 所有的 stdlib 函数，其多个参数都是使用 Cfg 打包。
         height: 300
         title:  'hello world'
     })
     ctx := Context{
         input: ui.new_textbox(wnd)
-        // we don't need to initialize the names array, it's done automatically
+        // 我们不需要初始化 names 数组, 自动完成的
     }
     ctx.input.set_placeholder('Enter your name')
     btn := ui.new_button(wnd, 'Click me', ctx.btn_click)
@@ -96,7 +96,7 @@ fn main() {
 fn (ctx mut Context) btn_click() {
     name := ctx.input.text()
     ctx.input.hide()
-    println('current list of names: $ctx.names')  // >> current list of names: [ "Bob", "Alex" ]
+    println('current list of names: $ctx.names')  // >> 当前 names 的列表: [ "Bob", "Alex" ]
     ui.alert('Hello, $name!')
     if ctx.names.contains(name) {
         ui.alert('I already greeted you ;)')
@@ -107,7 +107,7 @@ fn (ctx mut Context) btn_click() {
 
 <details>
 
-<summary>4. Generic SQL repository</summary>
+<summary>4. 泛型 SQL 库</summary>
 
 ```go
 struct User { /* ... */ }
@@ -122,8 +122,8 @@ fn new_repo<T>(db DB) Repo {
     return Repo<T>{db: db}
 }
 
-fn (r Repo) find_by_id(id int) T? { // `?` means the function returns an optional
-    table_name := T.name // in this example getting the name of the type gives us the table name
+fn (r Repo) find_by_id(id int) T? { // `?` 的意思是，该函数会返回一个 optional(可选值)
+    table_name := T.name // 在这个示例中，获取(泛型)类型的 name，赋给 table_name
     return r.db.query_one<T>('select * from $table_name where id = ?', id)
 }
 
@@ -171,7 +171,7 @@ time v doom3.v # 0.5s
 V 可以转译整个 C / C ++项目，为您提供安全性，简单性，还有高达 200 倍提升的编译速度。
 
 ```
-std::vector<std::string> s;      s := \[\]string
+std::vector<std::string> s;      s := []string
 s.push_back("V is "); 			 s << 'V is '
 s.push_back("awesome");			 s << 'awesome'
 std::cout << s.size();			 println(s.len)

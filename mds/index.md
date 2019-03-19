@@ -24,7 +24,7 @@ wget vlang.io/v.c && gcc -o v v.c
 
 ```go
 fn main() {
-	types := \[ 'game', 'web', 'tools', 'GUI' \]
+	types := [ 'game', 'web', 'tools', 'GUI' ]
 	for typ in types {
 		println('Hello, $typ developers!')
 	}
@@ -59,7 +59,7 @@ time v doom3.v # 0.5s
 V can translate your entire C/C++ project and offer you the safety, simplicity, and up to 200x compilation speed up.
 
 ```
-std::vector<std::string> s;      s := \[\]string
+std::vector<std::string> s;      s := []string
 s.push_back("V is "); 			 s << 'V is '
 s.push_back("awesome");			 s << 'awesome'
 std::cout << s.size();			 println(s.len)

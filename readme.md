@@ -84,7 +84,7 @@ time v doom3.v    # 0.5s
 V 可以转译整个 C / C ++项目，为您提供安全性，简单性，还有高达 200 倍提升的编译速度。
 
 ```
-std::vector<std::string> s;      s := \[\]string
+std::vector<std::string> s;      s := []string
 s.push_back("V is "); 			 s << 'V is '
 s.push_back("awesome");			 s << 'awesome'
 std::cout << s.size();			 println(s.len)
