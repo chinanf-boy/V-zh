@@ -21,10 +21,9 @@
 <!-- repo = 'vlang-io/V' -->
 <!-- commit = '17fd9ae173543c315a24fa88d41706d9af75fd5b' -->
 <!-- time = '2019-03-17' -->
-
-| 翻译的原文 | 与日期        | 最新更新 | 更多                       |
-| ---------- | ------------- | -------- | -------------------------- |
-| [commit]   | ⏰ 2019-03-17 | ![last]  | [中文翻译][translate-list] |
+翻译的原文 | 与日期 | 最新更新 | 更多
+---|---|---|---
+[commit] | ⏰ 2019-03-17 | ![last] | [中文翻译][translate-list]
 
 [last]: https://img.shields.io/github/last-commit/vlang-io/V.svg
 [commit]: https://github.com/vlang-io/V/tree/17fd9ae173543c315a24fa88d41706d9af75fd5b
@@ -43,7 +42,7 @@
 
 ## 生活
 
-[help me live , live need money 💰](https://github.com/chinanf-boy/live-need-money)
+[If help, **buy** me coffee —— 营养跟不上了，给我来瓶营养快线吧! 💰](https://github.com/chinanf-boy/live-need-money)
 
 ---
 
